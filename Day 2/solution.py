@@ -19,10 +19,10 @@ move_score_lookup = {
 }
 
 
-def isWinning(challenge, response):
-    if (challenge == 'ROCK'):
+def is_winning(challenge, response):
+    if challenge == 'ROCK':
         return response == 'PAPER'
-    elif (challenge == 'PAPER'):
+    elif challenge == 'PAPER':
         return response == 'SCISSORS'
     else:
         return response == 'ROCK'
@@ -31,7 +31,7 @@ def isWinning(challenge, response):
 def score_game(ply1, ply2):
     if ply1 == ply2:
         return move_score_lookup[ply2] + 3
-    if isWinning(ply1, ply2):
+    if is_winning(ply1, ply2):
         return 6 + move_score_lookup[ply2]
     else:
         return move_score_lookup[ply2]
