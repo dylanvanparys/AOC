@@ -1,3 +1,5 @@
+import numpy as np
+
 with open('input.txt', 'r') as f:
     raw = f.read()
 rows = raw.split('\n')
@@ -71,5 +73,18 @@ def transform_entry_2(entry):
     return score_game(opponent, response)
 
 
+def transform_entry_3(entry):
+    [_, outcome] = entry.split(' ')
+    outcome = outcome_lookup[outcome]
+    if outcome == 'WIN':
+        return 1.0
+    elif outcome == 'DRAW':
+        return 0.5
+    else:
+        return 0.0
+
+
 print(sum(list(map(transform_entry_1, rows))))
 print(sum(list(map(transform_entry_2, rows))))
+print(np.mean(list(map(transform_entry_3, rows))))
+print((1/3)*0.5 + 1/3)
