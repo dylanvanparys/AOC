@@ -1,5 +1,3 @@
-import numpy as np
-
 with open('input.txt', 'r') as f:
     raw = f.read()
 rows = raw.split('\n')
@@ -30,7 +28,7 @@ class Move(object):
         src = stcks[self.source_index]
         targ = stcks[self.target_index]
         to_move = src[len(src) - self.depth:len(src)]
-        assert(len(to_move) == self.depth)
+        assert (len(to_move) == self.depth)
         for i in to_move[::-1]:
             targ.append(i)
         stcks[self.source_index] = src[:len(src) - self.depth:]
@@ -52,17 +50,19 @@ n_before = sum(list(map(lambda x: len(x), stacks)))
 for move in moves:
     move.apply(stacks)
 
-n_after = sum(list(map(lambda x :len(x), stacks)))
+n_after = sum(list(map(lambda x: len(x), stacks)))
 
-assert(n_after == n_before)
+assert (n_after == n_before)
 
 for i in range(len(stacks)):
-    print("stack ", i+1, ": ", str(stacks[i]))
+    print("stack ", i + 1, ": ", str(stacks[i]))
+
 
 def get_top(stack):
     if len(stack) == 0:
         return ' '
     return stack[-1]
+
 
 print(list(map(get_top, stacks)))
 print('[', ''.join(list(map(get_top, stacks))), ']')
